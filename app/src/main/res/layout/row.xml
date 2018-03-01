@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+
+    <ImageView
+        android:id="@+id/movieImage"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="3dp" />
+
+    <TextView
+        android:id="@+id/txtMovieName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/movieImage"
+        android:layout_toEndOf="@+id/movieImage"
+        android:layout_toRightOf="@+id/movieImage"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="Полное название фильма"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/txtRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtMovieName"
+        android:layout_toEndOf="@+id/movieImage"
+        android:layout_toRightOf="@+id/movieImage"
+        android:text="Рейтинг фильма"
+        android:textColor="@color/colorRating" />
+
+    <TextView
+        android:id="@+id/txtDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtRating"
+        android:layout_toEndOf="@+id/movieImage"
+        android:layout_toRightOf="@+id/movieImage"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:scrollHorizontally="true"
+        android:singleLine="false"
+        android:text="Описание фильма"
+        android:textSize="9sp" />
+</RelativeLayout>
