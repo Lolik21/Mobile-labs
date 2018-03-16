@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Movies"
+             xmlns:controls="clr-namespace:Movies.Controls"
+             x:Class="Movies.MovieViewCell">
+    <ViewCell.View>
+        <StackLayout Orientation="Horizontal" Margin="3">
+            <Image x:Name="filmSmallImage" 
+                   HeightRequest="120"
+                   WidthRequest="80"
+                   Aspect="AspectFill"/>
+
+            <StackLayout Orientation="Vertical">
+                <Label x:Name="filmSmallTitle" FontSize="26" LineBreakMode="TailTruncation" TextColor="Azure"/>
+                <Label x:Name="filmSmallRating" FontSize="20" LineBreakMode="TailTruncation" TextColor="Yellow"/>
+                <controls:MultiLineLabel x:Name="filmShortDescription" LineBreakMode="TailTruncation" FontSize="10"
+                                         Lines="4" TextColor="Aqua"/>
+            </StackLayout>
+        </StackLayout>
+    </ViewCell.View>
+</ViewCell>

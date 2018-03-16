@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Movies.MovieDetailPage">
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="#1e1e1e">
+            <StackLayout Orientation="Vertical">
+                <Image x:Name="imgMovieImage" WidthRequest="240" HeightRequest="340" Aspect="AspectFit"/>
+                <Label x:Name="lblMovieTitle" FontSize="26" TextColor="Azure" HorizontalTextAlignment="Center"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                    <Label Text="Рейтинг:" TextColor="Azure" HorizontalOptions="Start"/>
+                    <Label x:Name="lblMovieRating" TextColor="Yellow" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                    <Label Text="Релиз:" TextColor="Azure"  WidthRequest="125" HorizontalOptions="Start"/>
+                    <Label x:Name="lblMovieRelease" TextColor="Azure" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                    <Label Text="Жанры:" TextColor="Azure" WidthRequest="140" HorizontalOptions="Start"/>
+                    <Label x:Name="lblMovieGenres" TextColor="Azure" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                    <Label Text="Длительность:" TextColor="Azure" HorizontalOptions="Start"/>
+                    <Label x:Name="lblMovieDuration" TextColor="Azure" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                </StackLayout>
+                <Label x:Name="lblMovieDescription" TextColor="Azure"/>
+                <Button x:Name="btnGoToLink" Text="Перети по ссылке" Clicked="btnGoToLink_Clicked" BackgroundColor="#1e1e1e" TextColor="Azure" BorderColor="Azure"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
