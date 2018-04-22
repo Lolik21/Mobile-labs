@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp.Views.SettingsContentPage"
+             Title="{Binding Title}"
+             BackgroundColor="{Binding BackgroundColor}">
+    <ScrollView>
+        <StackLayout Orientation="Vertical">
+            <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="{Binding SupportTitle}"
+           Margin="10" FontSize="{Binding SupportTitalFontSize}" TextColor="{Binding FontColor}"/>
+            <Label HorizontalTextAlignment="Center" Margin="10" Text="{Binding AppFontSizeLabelText}" 
+               FontSize="{Binding SettingsLabelsFontSize}" TextColor="{Binding FontColor}"
+               HorizontalOptions="Center"/>
+            <Slider x:Name="fontSizeSlider" Minimum="0" Maximum="10" 
+                Value="5" ValueChanged="FontSizeSlider_ValueChanged"></Slider>
+            <Label HorizontalTextAlignment="Center" FontSize="{Binding SettingsLabelsFontSize}"
+               Margin="10" Text="{Binding AppFontColorLabelText}" TextColor="{Binding FontColor}"
+               HorizontalOptions="Center"/>
+            <StackLayout Orientation="Horizontal">
+                <BoxView Color="Red" HorizontalOptions="FillAndExpand"/>
+                <BoxView Color="Green" HorizontalOptions="FillAndExpand"/>
+                <BoxView Color="Blue" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Slider x:Name="textRedSlider" Minimum="0" Maximum="1" 
+                    Value="0" HorizontalOptions="FillAndExpand" ValueChanged="TextColorRedSlider_ValueChanged"/>
+                <Slider x:Name="textGreenSlider" Minimum="0" Maximum="1" 
+                    Value="0" HorizontalOptions="FillAndExpand" ValueChanged="TextColorGreenSlider_ValueChanged"/>
+                <Slider x:Name="textBlueSlider" Minimum="0" Maximum="1" 
+                    Value="0" HorizontalOptions="FillAndExpand" ValueChanged="TextColorBlueSlider_ValueChanged"/>
+            </StackLayout>
+            <Label HorizontalTextAlignment="Center" FontSize="{Binding SettingsLabelsFontSize}"
+               Margin="10" Text="{Binding AppFontColorLabelText}" TextColor="{Binding FontColor}"
+               HorizontalOptions="Center"/>
+            <StackLayout Orientation="Horizontal">
+                <BoxView Color="Red" HorizontalOptions="FillAndExpand"/>
+                <BoxView Color="Green" HorizontalOptions="FillAndExpand"/>
+                <BoxView Color="Blue" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Slider x:Name="backGroundRedSlider" Minimum="0" Maximum="1" 
+                    Value="0" HorizontalOptions="FillAndExpand" ValueChanged="backGroundRedSlider_ValueChanged"/>
+                <Slider x:Name="backGroundGreenSlider" Minimum="0" Maximum="1" 
+                    Value="0" HorizontalOptions="FillAndExpand" ValueChanged="backGroundGreenSlider_ValueChanged"/>
+                <Slider x:Name="backGroundBlueSlider" Minimum="0" Maximum="1" 
+                    Value="0" HorizontalOptions="FillAndExpand" ValueChanged="backGroundBlueSlider_ValueChanged"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
