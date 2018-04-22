@@ -9,9 +9,6 @@
         <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="{Binding SupportLabel}" 
                FontSize="{Binding SupportTitalFontSize}" 
                TextColor="{Binding FontColor}" />
-        <maps:Map
-            x:Name="mainMap"
-            MapType="Hybrid"
-        />
+        <maps:Map x:Name="mainMap" MapType="Hybrid"/>
     </StackLayout>
 </ContentPage>
