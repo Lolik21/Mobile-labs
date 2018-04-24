@@ -1,0 +1,11 @@
+﻿{
+  "MapTitle": "Карта",
+  "MapSupportTitle": "Карта со всеми городами",
+
+  "SettingsTitle": "Настройки",
+  "SettingsSupportTitle": "Страница настроек. Тут вы можете изменять настройки в приложении и они будут сразу обновляться!",
+  "SettingsLanguageLabelText": "Язык приложения",
+  "SettingsFontSizeLabelText": "Размер шрифта",
+  "SettingsFontColorLabelText": "Цвет шрифта",
+  "SettingsBackgroundColorLabelText": "Цвет фона"
+}

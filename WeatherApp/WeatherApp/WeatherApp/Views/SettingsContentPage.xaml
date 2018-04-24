@@ -6,15 +6,15 @@
              BackgroundColor="{Binding BackgroundColor}">
     <ScrollView>
         <StackLayout Orientation="Vertical">
-            <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="{Binding SupportTitle}"
+            <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="{Binding SettingsSupportTitle}"
            Margin="10" FontSize="{Binding SupportTitalFontSize}" TextColor="{Binding FontColor}"/>
-            <Label HorizontalTextAlignment="Center" Margin="10" Text="{Binding AppFontSizeLabelText}" 
+            <Label HorizontalTextAlignment="Center" Margin="10" Text="{Binding SettingsFontSizeLabelText}" 
                FontSize="{Binding SettingsLabelsFontSize}" TextColor="{Binding FontColor}"
                HorizontalOptions="Center"/>
             <Slider x:Name="fontSizeSlider" Minimum="0" Maximum="10" 
                 Value="5" ValueChanged="FontSizeSlider_ValueChanged"></Slider>
             <Label HorizontalTextAlignment="Center" FontSize="{Binding SettingsLabelsFontSize}"
-               Margin="10" Text="{Binding AppFontColorLabelText}" TextColor="{Binding FontColor}"
+               Margin="10" Text="{Binding SettingsFontColorLabelText}" TextColor="{Binding FontColor}"
                HorizontalOptions="Center"/>
             <StackLayout Orientation="Horizontal">
                 <BoxView Color="Red" HorizontalOptions="FillAndExpand"/>
@@ -30,7 +30,7 @@
                     Value="0" HorizontalOptions="FillAndExpand" ValueChanged="TextColorBlueSlider_ValueChanged"/>
             </StackLayout>
             <Label HorizontalTextAlignment="Center" FontSize="{Binding SettingsLabelsFontSize}"
-               Margin="10" Text="{Binding AppFontColorLabelText}" TextColor="{Binding FontColor}"
+               Margin="10" Text="{Binding SettingsBackgroundColorLabelText}" TextColor="{Binding FontColor}"
                HorizontalOptions="Center"/>
             <StackLayout Orientation="Horizontal">
                 <BoxView Color="Red" HorizontalOptions="FillAndExpand"/>
@@ -39,12 +39,18 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Slider x:Name="backGroundRedSlider" Minimum="0" Maximum="1" 
-                    Value="0" HorizontalOptions="FillAndExpand" ValueChanged="backGroundRedSlider_ValueChanged"/>
+                    Value="0" HorizontalOptions="FillAndExpand" ValueChanged="BackGroundRedSlider_ValueChanged"/>
                 <Slider x:Name="backGroundGreenSlider" Minimum="0" Maximum="1" 
-                    Value="0" HorizontalOptions="FillAndExpand" ValueChanged="backGroundGreenSlider_ValueChanged"/>
+                    Value="0" HorizontalOptions="FillAndExpand" ValueChanged="BackGroundGreenSlider_ValueChanged"/>
                 <Slider x:Name="backGroundBlueSlider" Minimum="0" Maximum="1" 
-                    Value="0" HorizontalOptions="FillAndExpand" ValueChanged="backGroundBlueSlider_ValueChanged"/>
+                    Value="0" HorizontalOptions="FillAndExpand" ValueChanged="BackGroundBlueSlider_ValueChanged"/>
             </StackLayout>
+            <Label HorizontalTextAlignment="Center" FontSize="{Binding SettingsLabelsFontSize}"
+               Margin="10" Text="{Binding SettingsLanguageLabelText}" TextColor="{Binding FontColor}"
+               HorizontalOptions="Center"/>
+            <Picker x:Name="languagePiker" ItemsSource="{Binding SupportedLanguages}" 
+                    SelectedItem="{Binding SelectedLanguage}" SelectedIndexChanged="LanguagePiker_SelectedIndexChanged">
+            </Picker>
         </StackLayout>
     </ScrollView>
 </ContentPage>

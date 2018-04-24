@@ -1,0 +1,11 @@
+﻿{
+  "MapTitle": "Map",
+  "MapSupportTitle" :  "Map with all sities",
+
+  "SettingsTitle": "Settings",
+  "SettingsSupportTitle": "Settings page. Here you can change the settings in the application and they will be updated immediately!",
+  "SettingsLanguageLabelText": "Application language",
+  "SettingsFontSizeLabelText": "Font Size",
+  "SettingsFontColorLabelText": "Font Color",
+  "SettingsBackgroundColorLabelText": "Background Color"
+}

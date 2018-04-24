@@ -6,7 +6,7 @@
              Title="{Binding Title}"
              BackgroundColor="{Binding BackgroundColor}">
     <StackLayout>
-        <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="{Binding SupportLabel}" 
+        <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="{Binding MapSupportTitle}" 
                FontSize="{Binding SupportTitalFontSize}" 
                TextColor="{Binding FontColor}" />
         <maps:Map x:Name="mainMap" MapType="Hybrid"/>

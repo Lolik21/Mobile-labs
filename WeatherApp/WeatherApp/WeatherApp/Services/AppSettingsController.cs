@@ -11,12 +11,10 @@ namespace WeatherApp.Services
         public AppSettingsController()
         {
             FontChangableViewModels = new List<IFontChangable>();
-            MultilangualViewModels = new List<IMultilangual>();
             BackGroundChangableViewModels = new List<IBackGroundChangable>();
         }
 
         public List<IFontChangable> FontChangableViewModels { get; set; }
-        public List<IMultilangual> MultilangualViewModels { get; set; }
         public List<IBackGroundChangable> BackGroundChangableViewModels { get; set; }
         
         public void ChangeFontSize(double delta)
@@ -41,13 +39,6 @@ namespace WeatherApp.Services
             {
                 viewModel.ChangeBackground(newColor);
             }
-        }
-
-        public void ChangeLanguage(string languageName)
-        {
-
-        }
-
-        
+        }       
     }
 }

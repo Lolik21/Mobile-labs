@@ -1,6 +1,7 @@
 ﻿using CommonServiceLocator;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Unity;
@@ -8,6 +9,7 @@ using Unity.ServiceLocation;
 using WeatherApp.Services;
 using WeatherApp.Services.Interfaces;
 using Xamarin.Forms;
+using DewCore.Xamarin.Localization;
 
 namespace WeatherApp
 {
@@ -17,13 +19,28 @@ namespace WeatherApp
 		{
             UnityContainer unityContainer = new UnityContainer();
             unityContainer.RegisterSingleton<AppSettingsController>();
-            unityContainer.RegisterSingleton<AppLanguageProvider>();
+            unityContainer.RegisterSingleton<AppLanguageController>();
             unityContainer.RegisterSingleton<IContentProvider, AppNetworkContentProvider>();
-
             ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(unityContainer));
+            InitializeComponent();
 
-            InitializeComponent();           
-			MainPage = new MainPage();
+            AppLanguageController appLanguage = ServiceLocator.Current.GetInstance<AppLanguageController>();
+
+            if (!appLanguage.SupportedLanguages.ContainsKey
+                (CultureInfo.CurrentCulture.Name.ToLower()))
+            {
+                _.CultureStringOverride = 
+                    appLanguage.SupportedLanguages.Keys.First();
+                appLanguage.CurrentLanguage = appLanguage.
+                    SupportedLanguages[appLanguage.SupportedLanguages.Keys.First()];
+            }
+            {
+                appLanguage.CurrentLanguage = appLanguage.
+                    SupportedLanguages[CultureInfo.CurrentCulture.Name.ToLower()];
+            }
+            _.LoadDictionary();
+
+            MainPage = new MainPage();
 		}
 
 		protected override void OnStart ()

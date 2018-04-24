@@ -19,7 +19,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppNetworkContentProvider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\AppLanguageProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\AppLanguageController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppSettingsController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interfaces\IBackGroundChangable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interfaces\IContentProvider.cs" />
@@ -90,5 +90,11 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Children\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Master Detail\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Localized\ru-ru.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Localized\en-us.json" />
   </ItemGroup>
 </Project>

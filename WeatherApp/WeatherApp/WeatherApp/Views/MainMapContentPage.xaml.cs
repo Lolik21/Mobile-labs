@@ -15,7 +15,7 @@ namespace WeatherApp.Views
 	public partial class MainMapContentPage : ContentPage
 	{
         AppSettingsController appSettings = ServiceLocator.Current.GetInstance<AppSettingsController>();
-        AppLanguageProvider appLanguage = ServiceLocator.Current.GetInstance<AppLanguageProvider>();
+        AppLanguageController appLanguage = ServiceLocator.Current.GetInstance<AppLanguageController>();
         public MainMapContentPage ()
 		{
 			InitializeComponent ();

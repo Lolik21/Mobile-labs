@@ -16,7 +16,7 @@ namespace WeatherApp.Views
     public partial class SettingsContentPage : ContentPage
     {
         private AppSettingsController appSettings = ServiceLocator.Current.GetInstance<AppSettingsController>();
-        private AppLanguageProvider appLanguage = ServiceLocator.Current.GetInstance<AppLanguageProvider>();
+        private AppLanguageController appLanguage = ServiceLocator.Current.GetInstance<AppLanguageController>();
         public SettingsContentPage()
         {
             InitializeComponent();
@@ -30,7 +30,7 @@ namespace WeatherApp.Views
             textBlueSlider.Value = fontColor.B;          
             backGroundRedSlider.Value = 1;
             backGroundGreenSlider.Value = 1;
-            backGroundBlueSlider.Value = 1;
+            backGroundBlueSlider.Value = 1;           
         }
 
         private void FontSizeSlider_ValueChanged(object sender, ValueChangedEventArgs e)
@@ -56,22 +56,27 @@ namespace WeatherApp.Views
                 textGreenSlider.Value, e.NewValue));
         }
 
-        private void backGroundRedSlider_ValueChanged(object sender, ValueChangedEventArgs e)
+        private void BackGroundRedSlider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             appSettings.ChangeBackgroundColor(Color.FromRgb(e.NewValue, backGroundGreenSlider.Value,
                 backGroundBlueSlider.Value));
         }
 
-        private void backGroundGreenSlider_ValueChanged(object sender, ValueChangedEventArgs e)
+        private void BackGroundGreenSlider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             appSettings.ChangeBackgroundColor(Color.FromRgb(backGroundRedSlider.Value,
                 e.NewValue, backGroundBlueSlider.Value));
         }
 
-        private void backGroundBlueSlider_ValueChanged(object sender, ValueChangedEventArgs e)
+        private void BackGroundBlueSlider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             appSettings.ChangeBackgroundColor(Color.FromRgb(backGroundRedSlider.Value,
                 backGroundGreenSlider.Value, e.NewValue));
+        }
+
+        private void LanguagePiker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            appLanguage.UpdateLanguages(languagePiker.SelectedItem as string);
         }
     }
 }

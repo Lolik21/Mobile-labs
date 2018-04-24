@@ -5,21 +5,22 @@ using System.Text;
 using WeatherApp.Services;
 using WeatherApp.Services.Interfaces;
 using Xamarin.Forms;
+using DewCore.Xamarin.Localization;
 
 namespace WeatherApp.ViewModels
 {
     class MainMapViewModel : MainViewModel, IFontChangable, IMultilangual, 
         INotifyPropertyChanged, IBackGroundChangable
     {
-        public MainMapViewModel(AppLanguageProvider appLenguageProvider)
+        public MainMapViewModel(AppLanguageController appLenguageProvider)
         {
-            Title = "Карта";
-            SupportLabel = "Карта со всеми городами";
+            Title = _.GetString("MapTitle");
+            MapSupportTitle = _.GetString("MapSupportTitle");
             SupportTitalFontSize = defaultSupportTitleSize;
             FontColor = defaultColor;
             BackgroundColor = backgroundColor;
         }
-        public string SupportLabel { get; set; }
+        public string MapSupportTitle { get; set; }
         public double SupportTitalFontSize { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
