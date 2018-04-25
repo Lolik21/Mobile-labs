@@ -50,7 +50,10 @@ namespace WeatherApp.ViewModels
 
         public void UpdateLanguage()
         {
-            throw new NotImplementedException();
+            Title = _.GetString("MapTitle");
+            MapSupportTitle = _.GetString("MapSupportTitle");
+            OnPropertyChanged("Title");
+            OnPropertyChanged("MapSupportTitle");
         }
     }
 }

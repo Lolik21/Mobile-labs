@@ -15,12 +15,7 @@ namespace WeatherApp.ViewModels
     {
         public SettingsViewModel(AppLanguageController appLanguageProvider)
         {
-            Title = _.GetString("SettingsTitle");
-            SettingsSupportTitle = _.GetString("SettingsSupportTitle"); ;
-            SettingsLanguageLabelText = _.GetString("SettingsLanguageLabelText");
-            SettingsFontSizeLabelText = _.GetString("SettingsFontSizeLabelText");
-            SettingsFontColorLabelText = _.GetString("SettingsFontColorLabelText");
-            SettingsBackgroundColorLabelText = _.GetString("SettingsBackgroundColorLabelText");
+            UpdateLanguage();
             SettingsLabelsFontSize = defaultSize;
             SupportTitalFontSize = defaultSupportTitleSize;
             FontColor = defaultColor;
@@ -69,8 +64,18 @@ namespace WeatherApp.ViewModels
 
         public void UpdateLanguage()
         {
-            throw new NotImplementedException();
-            
+            Title = _.GetString("SettingsTitle");
+            SettingsSupportTitle = _.GetString("SettingsSupportTitle"); ;
+            SettingsLanguageLabelText = _.GetString("SettingsLanguageLabelText");
+            SettingsFontSizeLabelText = _.GetString("SettingsFontSizeLabelText");
+            SettingsFontColorLabelText = _.GetString("SettingsFontColorLabelText");
+            SettingsBackgroundColorLabelText = _.GetString("SettingsBackgroundColorLabelText");
+            OnPropertyChanged("Title");
+            OnPropertyChanged("SettingsSupportTitle");
+            OnPropertyChanged("SettingsLanguageLabelText");
+            OnPropertyChanged("SettingsFontSizeLabelText");
+            OnPropertyChanged("SettingsFontColorLabelText");
+            OnPropertyChanged("SettingsBackgroundColorLabelText");
         }
        
     }

@@ -24,6 +24,7 @@ namespace WeatherApp.Views
             this.BindingContext = settingsViewModel;
             appSettings.FontChangableViewModels.Add(settingsViewModel);
             appSettings.BackGroundChangableViewModels.Add(settingsViewModel);
+            appLanguage.MultilangualViewModels.Add(settingsViewModel);
             Color fontColor = (Color)Application.Current.Resources["defultSettingsFontColor"];
             textRedSlider.Value = fontColor.R;
             textGreenSlider.Value = fontColor.G;
@@ -74,9 +75,11 @@ namespace WeatherApp.Views
                 backGroundGreenSlider.Value, e.NewValue));
         }
 
-        private void LanguagePiker_SelectedIndexChanged(object sender, EventArgs e)
+        private async void LanguagePiker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            appLanguage.UpdateLanguages(languagePiker.SelectedItem as string);
+            languagePiker.IsEnabled = false;
+            await appLanguage.UpdateLanguages(languagePiker.SelectedItem as string);
+            languagePiker.IsEnabled = true;
         }
     }
 }

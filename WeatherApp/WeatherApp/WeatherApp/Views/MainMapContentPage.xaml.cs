@@ -23,6 +23,7 @@ namespace WeatherApp.Views
             this.BindingContext = mainMapViewModel;
             appSettings.BackGroundChangableViewModels.Add(mainMapViewModel);
             appSettings.FontChangableViewModels.Add(mainMapViewModel);
-		}
+            appLanguage.MultilangualViewModels.Add(mainMapViewModel);
+        }
 	}
 }

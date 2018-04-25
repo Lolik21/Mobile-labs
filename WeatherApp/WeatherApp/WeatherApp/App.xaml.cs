@@ -10,6 +10,9 @@ using WeatherApp.Services;
 using WeatherApp.Services.Interfaces;
 using Xamarin.Forms;
 using DewCore.Xamarin.Localization;
+using System.Net.Http;
+using WeatherApp.Helpers;
+using System.Threading.Tasks;
 
 namespace WeatherApp
 {
@@ -42,6 +45,8 @@ namespace WeatherApp
 
             MainPage = new MainPage();
 		}
+
+        
 
 		protected override void OnStart ()
 		{

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using WeatherApp.Services.Interfaces;
 using DewCore.Xamarin.Localization;
+using System.Threading.Tasks;
+using System.Linq;
+using System.Globalization;
 
 namespace WeatherApp.Services
 {
@@ -22,12 +25,24 @@ namespace WeatherApp.Services
 
         public string CurrentLanguage { get; set; }
 
-        public void UpdateLanguages(string language)
+        public async Task UpdateLanguages(string language)
         {
-            foreach(var viewModel in MultilangualViewModels)
+            var newCulture = new CultureInfo(SupportedLanguages.
+                First(x => x.Value == language).Key);
+            var prevCulture = new CultureInfo(SupportedLanguages.
+                First(x => x.Value == CurrentLanguage).Key);
+
+            if (newCulture.Name.ToLower() != prevCulture.Name.ToLower())
             {
-                viewModel.UpdateLanguage();
-            }
+                await _.ChangeCulture(newCulture);
+
+                foreach (var viewModel in MultilangualViewModels)
+                {
+                    viewModel.UpdateLanguage();
+                }
+
+                CurrentLanguage = SupportedLanguages[newCulture.Name.ToLower()];
+            }        
         }
     }
 }

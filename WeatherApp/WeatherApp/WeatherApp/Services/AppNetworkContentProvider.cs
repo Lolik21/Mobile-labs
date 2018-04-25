@@ -18,6 +18,23 @@ namespace WeatherApp.Services
         public async Task<string> GetJson(string url)
         {
             return null;
+
+            //using (var httpClient = new HttpClient())
+            //{
+            //    Task<string> getStringTask = httpClient.GetStringAsync(UrlResolver.ResolveCitiesJsonLink());
+            //    Task.WaitAll(getStringTask);
+            //    string rez = getStringTask.Result;
+            //    string rekf;
+            //    try
+            //    {
+            //        List<City> cities = JsonConvert.DeserializeObject<List<City>>(rez);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        rekf = ex.Message + "2";
+            //    }
+
+            //}
         }
     }
 }

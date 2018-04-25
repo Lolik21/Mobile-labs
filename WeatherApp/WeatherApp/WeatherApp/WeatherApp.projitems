@@ -18,6 +18,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\StringUrlResolverStorage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\UrlResolver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\City.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\WindDirection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppNetworkContentProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppLanguageController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AppSettingsController.cs" />
