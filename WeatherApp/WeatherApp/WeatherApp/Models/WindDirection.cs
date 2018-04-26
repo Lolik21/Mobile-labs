@@ -18,7 +18,7 @@ namespace WeatherApp.Models
             NorthWest
         }
 
-        public static Wind getWindDirection(int grade)
+        public static Wind GetWindDirection(int grade)
         {
             if (grade >= 339 && grade <= 360)
             {

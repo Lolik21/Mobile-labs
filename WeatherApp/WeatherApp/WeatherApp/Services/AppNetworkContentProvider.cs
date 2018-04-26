@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using WeatherApp.Helpers;
+using WeatherApp.Models;
 using WeatherApp.Services.Interfaces;
 using Xamarin.Forms;
 
@@ -10,31 +13,22 @@ namespace WeatherApp.Services
 {
     class AppNetworkContentProvider : IContentProvider
     {
+        public List<City> Cities { get; set; }
         public async Task<Image> GetImage(string url)
         {
             return null; 
         }
 
-        public async Task<string> GetJson(string url)
+        public async Task LoadCities()
         {
-            return null;
-
-            //using (var httpClient = new HttpClient())
-            //{
-            //    Task<string> getStringTask = httpClient.GetStringAsync(UrlResolver.ResolveCitiesJsonLink());
-            //    Task.WaitAll(getStringTask);
-            //    string rez = getStringTask.Result;
-            //    string rekf;
-            //    try
-            //    {
-            //        List<City> cities = JsonConvert.DeserializeObject<List<City>>(rez);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        rekf = ex.Message + "2";
-            //    }
-
-            //}
+            if (Cities == null)
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    var json = await httpClient.GetStringAsync(UrlResolver.ResolveCitiesJsonLink());                
+                    this.Cities = JsonConvert.DeserializeObject<List<City>>(json);
+                }                
+            }
         }
     }
 }

@@ -20,12 +20,7 @@ namespace WeatherApp.Views
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as CitiesMasterDetailPageMenuItem;
-            if (item == null)
-                return;
-
-            var page = (Page)Activator.CreateInstance(item.TargetType);
-            page.Title = item.Title;
+            var page = (Page)Activator.CreateInstance(typeof(CitiesMasterDetailPageDetail));
 
             Detail = new NavigationPage(page);
             IsPresented = false;

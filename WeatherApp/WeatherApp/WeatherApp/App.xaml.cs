@@ -13,6 +13,7 @@ using DewCore.Xamarin.Localization;
 using System.Net.Http;
 using WeatherApp.Helpers;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace WeatherApp
 {
@@ -28,6 +29,9 @@ namespace WeatherApp
             InitializeComponent();
 
             AppLanguageController appLanguage = ServiceLocator.Current.GetInstance<AppLanguageController>();
+            IContentProvider contentProvider = ServiceLocator.Current.GetInstance<IContentProvider>();
+            
+
 
             if (!appLanguage.SupportedLanguages.ContainsKey
                 (CultureInfo.CurrentCulture.Name.ToLower()))

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WeatherApp.Models
 {
-    class City
+    public class City
     {
         public string Name { get; set; }
         public string Country { get; set; }
@@ -14,5 +14,7 @@ namespace WeatherApp.Models
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         public string WeatherId { get; set; }
+
+        public string CurrentWeather { get; set; }
     }
 }

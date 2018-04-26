@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\MultiLineLabel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StringUrlResolverStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UrlResolver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\City.cs" />
@@ -44,9 +45,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Master Detail\CitiesMasterDetailPageMaster.xaml.cs">
       <DependentUpon>CitiesMasterDetailPageMaster.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Master Detail\CitiesMasterDetailPageMenuItem.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainMapContentPage.xaml.cs">
@@ -76,19 +74,19 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Master Detail\CitiesMasterDetailPage.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator> MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Master Detail\CitiesMasterDetailPageMaster.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator> MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Master Detail\CitiesMasterDetailPageDetail.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator> MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
