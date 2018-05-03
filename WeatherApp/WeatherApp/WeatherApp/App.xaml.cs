@@ -14,6 +14,7 @@ using System.Net.Http;
 using WeatherApp.Helpers;
 using System.Threading.Tasks;
 using System.Threading;
+using WeatherApp.Controls;
 
 namespace WeatherApp
 {
@@ -48,7 +49,8 @@ namespace WeatherApp
             _.LoadDictionary();
 
             MainPage = new MainPage();
-		}
+
+        }
 
         
 

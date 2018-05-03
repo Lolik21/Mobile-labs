@@ -8,6 +8,7 @@
             <Color x:Key="defultSettingsFontColor">#004D40</Color>
             <x:Double x:Key="masterCityTitleLabelFontSize">26</x:Double>
             <x:Double x:Key="masterCityWeatherLabelFontSize">20</x:Double>
+            <x:Double x:Key="masterCityDescriptionLabelFontSize">10</x:Double>
             <x:Double x:Key="defultSettingsFontSize">20</x:Double>
             <x:Double x:Key="defultSettingsFontSupportSize">26</x:Double>
         </ResourceDictionary>

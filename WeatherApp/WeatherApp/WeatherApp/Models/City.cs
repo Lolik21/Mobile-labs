@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace WeatherApp.Models
 {
-    public class City
+    public class City 
     {
         public string Name { get; set; }
         public string Country { get; set; }
@@ -16,5 +18,6 @@ namespace WeatherApp.Models
         public string WeatherId { get; set; }
 
         public string CurrentWeather { get; set; }
+        public int WindDegree { get; set; }
     }
 }

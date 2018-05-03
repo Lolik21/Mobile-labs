@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using FFImageLoading.Forms.Touch;
 using Foundation;
 using UIKit;
+using WeatherApp.iOS.Renders;
 
 namespace WeatherApp.iOS
 {
@@ -24,7 +25,9 @@ namespace WeatherApp.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
-            LoadApplication(new App());           
+            LoadApplication(new App());
+            CachedImageRenderer.Init();
+            GifImageViewRenderer.Init();
             return base.FinishedLaunching(app, options);
         }
     }

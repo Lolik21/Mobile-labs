@@ -8,24 +8,51 @@ using WeatherApp.Models;
 using WeatherApp.Services.Interfaces;
 using Xamarin.Forms;
 using DewCore.Xamarin.Localization;
+using System.Windows.Input;
 
 namespace WeatherApp.ViewModels
 {
     class MasterViewModel : MainViewModel, INotifyPropertyChanged, IFontChangable, IBackGroundChangable, IMultilangual
     {
-        public ObservableCollection<City> CityMenuItems { get; set; }
+        private bool _isRefreshing = false;
+
+        protected double masterCityTitleLabelFontSize = 
+            (double)Application.Current.Resources["masterCityTitleLabelFontSize"];
+        protected double masterCityWeatherLabelFontSize =
+            (double)Application.Current.Resources["masterCityWeatherLabelFontSize"];
+        protected double masterCityDescriptionLabelFontSize =
+            (double)Application.Current.Resources["masterCityDescriptionLabelFontSize"];
 
         public MasterViewModel()
         {
-            CityMenuItems = new ObservableCollection<City>();
+            CityMenuItems = new ObservableCollection<CityTableCellViewModel>();
             Title = _.GetString("MasterDetailTitle");
+            MasterCityTitleLabelFontSize = masterCityTitleLabelFontSize;
+            MasterCityWeatherLabelFontSize = masterCityWeatherLabelFontSize;
+            MasterCityDescriptionLabelFontSize = masterCityDescriptionLabelFontSize;
         }
 
-        public void AddRange(List<City> cities)
+        public bool IsRefreshing
         {
-            foreach (var city in cities)
+            get { return _isRefreshing; }
+            set
             {
-                CityMenuItems.Add(city);
+                _isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
+        public ObservableCollection<CityTableCellViewModel> CityMenuItems { get; set; }
+
+        public double MasterCityTitleLabelFontSize { get; set; }
+        public double MasterCityWeatherLabelFontSize { get; set; }
+        public double MasterCityDescriptionLabelFontSize { get; set; }
+
+        public void AddRange(List<CityTableCellViewModel> citiesCells)
+        {
+            foreach (var cityCell in citiesCells)
+            {
+                CityMenuItems.Add(cityCell);
             }
         }
         public void UpdateFontColor(Color color)
@@ -36,7 +63,12 @@ namespace WeatherApp.ViewModels
 
         public void UpdateFontSize(double delta)
         {
-
+            MasterCityTitleLabelFontSize = masterCityTitleLabelFontSize + delta;
+            MasterCityWeatherLabelFontSize = masterCityWeatherLabelFontSize + delta;
+            MasterCityDescriptionLabelFontSize = masterCityDescriptionLabelFontSize + delta;
+            OnPropertyChanged("MasterCityTitleLabelFontSize");
+            OnPropertyChanged("MasterCityWeatherLabelFontSize");
+            OnPropertyChanged("MasterCityDescriptionLabelFontSize");
         }
 
         public void ChangeBackground(Color newColor)

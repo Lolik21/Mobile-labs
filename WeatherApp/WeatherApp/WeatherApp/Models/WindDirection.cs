@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace WeatherApp.Models
 {
@@ -15,7 +16,7 @@ namespace WeatherApp.Models
             South,
             SouthWest,
             West,
-            NorthWest
+            NorthWest         
         }
 
         public static Wind GetWindDirection(int grade)
@@ -57,6 +58,35 @@ namespace WeatherApp.Models
                 return Wind.NorthWest;
             }
             return Wind.North;
+        }
+
+        public static ImageSource GetWindImageDirection(Wind wind)
+        {
+            switch (wind)
+            {
+                case Wind.North:
+                    return "north.png";
+                case Wind.NorthEast:
+                    return "northeast.png";
+                case Wind.East:
+                    return "east.png";
+                case Wind.SouthEast:
+                    return "southeast.png";
+                case Wind.South:
+                    return "south.png";
+                case Wind.SouthWest:
+                    return "southwest.png";
+                case Wind.West:
+                    return "west.png";
+                case Wind.NorthWest:
+                    return "northwest.png";
+                default:
+                    return "cross.png";
+            }
+        }
+        public static ImageSource GetNotLoadedImageDirection()
+        {
+            return "cross.png";
         }
     }
 }

@@ -8,10 +8,6 @@
     <pages:CitiesMasterDetailPageMaster x:Name="MasterPage" />
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
-    <NavigationPage>
-      <x:Arguments>
-        <pages:CitiesMasterDetailPageDetail />
-      </x:Arguments>
-    </NavigationPage>
+    
   </MasterDetailPage.Detail>
 </MasterDetailPage>

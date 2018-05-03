@@ -2,8 +2,21 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.Views.CitiesMasterDetailPageDetail"
-             Title="Detail">
-  <StackLayout Padding="10">
-    <Label Text="This is a detail page. To get the 'triple' line icon on each platform add a icon to each platform and update the 'Master' page with an Icon that references it."/>
-  </StackLayout>
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             Title="{Binding CityName}">
+    <ScrollView>
+        <StackLayout>
+            <Label Text="{Binding CityName}" HorizontalTextAlignment="Center" TextColor="{Binding FontColor}"/>
+            <Image Source="{Binding BigImageSource}" HeightRequest="500"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding CityWeather}" 
+                       TextColor="{Binding FontColor}" VerticalOptions="StartAndExpand"/>
+                <Image VerticalOptions="CenterAndExpand"/>
+                <Label Text="{Binding CityCountry}" 
+                       TextColor="{Binding FontColor}" VerticalOptions="EndAndExpand"/>
+            </StackLayout>
+            <Label Text="{Binding CityDescription}" TextColor="{Binding FontColor}"/>
+            <maps:Map x:Name="mainMap" MapType="Hybrid" HeightRequest="500"/>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

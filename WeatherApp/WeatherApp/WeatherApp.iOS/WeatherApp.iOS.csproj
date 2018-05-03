@@ -91,6 +91,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renders\CustomMultiLineLabelRenderer.cs" />
+    <Compile Include="Renders\GifImageViewRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
@@ -137,6 +138,12 @@
     <PackageReference Include="Unity">
       <Version>5.8.6</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Forms">
+      <Version>2.3.6</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations">
+      <Version>2.3.6</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
     <PackageReference Include="Xamarin.Forms.Maps">
       <Version>2.5.1.444934</Version>
@@ -144,6 +151,39 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\defaultImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\east.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\southwest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\north.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\northeast.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\northwest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\south.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\southeast.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\west.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\weather.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\loader.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\WeatherApp\WeatherApp.projitems" Label="Shared" />

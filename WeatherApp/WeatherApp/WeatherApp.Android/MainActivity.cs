@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using FFImageLoading.Forms.Droid;
+using WeatherApp.Droid.Renders;
 
 namespace WeatherApp.Droid
 {
@@ -20,6 +22,8 @@ namespace WeatherApp.Droid
             base.OnCreate(bundle);            
             global::Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
+            CachedImageRenderer.Init(enableFastRenderer: true);
+            GifImageViewRenderer.Init();
             LoadApplication(new App());
             
         }

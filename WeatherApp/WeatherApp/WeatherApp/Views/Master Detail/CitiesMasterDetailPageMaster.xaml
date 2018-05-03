@@ -4,54 +4,66 @@
              xmlns:controls="clr-namespace:WeatherApp.Controls"
              x:Class="WeatherApp.Views.CitiesMasterDetailPageMaster"
              Title="Master"
-             x:Name="DeclareYourCodeBehindHereOrDeclareAViewModel"
+             x:Name="MasterPage"
              BackgroundColor="{Binding BackgroundColor}">
     <StackLayout>
         <ListView x:Name="MenuItemsListView"
               SeparatorVisibility="None"
               HasUnevenRows="true"
               IsPullToRefreshEnabled="True"
+              IsRefreshing="{Binding IsRefreshing}"
+              Refreshing="MenuItemsListView_Refreshing"
               ItemsSource="{Binding CityMenuItems}">
             <ListView.Header>
-                <Grid BackgroundColor="#03A9F4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="10"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="80"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="10"/>
-                    </Grid.RowDefinitions>
-                    <Label
-                      Grid.Column="1"
-                      Grid.Row="2"
+                <RelativeLayout>
+                    <Image Source="weather.jpg"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Margin="5,0,0,0"
+                      Grid.Row="3"
                       Text="{Binding Title}"
+                      FontSize="{Binding MasterCityWeatherLabelFontSize}"
+                      TextColor="{Binding FontColor}"
                       Style="{DynamicResource SubtitleStyle}"/>
-                </Grid>
+                    </Grid>
+                </RelativeLayout>
+              
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.View>
                         <StackLayout Orientation="Horizontal" Margin="3">
-                            <Image x:Name="filmSmallImage" 
-                                   HeightRequest="120"
-                                   WidthRequest="80"
-                                   Source="defaultImage.png"
+                            <Image HeightRequest="120"
+                                   WidthRequest="100"
+                                   Source="{Binding CitySmallImageSource}"
                                    Aspect="AspectFill"/>        
-
                             <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding Name}" FontSize="26" 
-                                           LineBreakMode="TailTruncation"
-                                           TextColor="{Binding Source={x:Reference DeclareYourCodeBehindHereOrDeclareAViewModel}, Path=BindingContext.FontColor}"/>
-                                    <Label Text="{Binding CurrentWeather}" FontSize="20" 
-                                           LineBreakMode="TailTruncation" TextColor="{Binding Source={x:Reference DeclareYourCodeBehindHereOrDeclareAViewModel}, Path=BindingContext.FontColor}"/>
-                                <controls:MultiLineLabel Text="{Binding Description}"
-                                         LineBreakMode="TailTruncation" FontSize="10" 
-                                         TextColor="{Binding Source={x:Reference DeclareYourCodeBehindHereOrDeclareAViewModel}, Path=BindingContext.FontColor}"
+                                    <Label Text="{Binding Name}" FontSize="{Binding Source={x:Reference MasterPage}, Path=BindingContext.MasterCityTitleLabelFontSize}" 
+                                           LineBreakMode="TailTruncation" 
+                                           TextColor="{Binding Source={x:Reference MasterPage}, Path=BindingContext.FontColor}"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Weather}" FontSize="{Binding Source={x:Reference MasterPage}, Path=BindingContext.MasterCityWeatherLabelFontSize}" 
+                                           LineBreakMode="TailTruncation" TextColor="{Binding Source={x:Reference MasterPage}, Path=BindingContext.FontColor}"
+                                           VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                                        <Image Source="{Binding WindDirectionImageSource}" />
+                                    </StackLayout>                                   
+                                    <controls:MultiLineLabel Text="{Binding Description}"
+                                         LineBreakMode="TailTruncation" FontSize="{Binding Source={x:Reference MasterPage}, Path=BindingContext.MasterCityDescriptionLabelFontSize}" 
+                                         TextColor="{Binding Source={x:Reference MasterPage}, Path=BindingContext.FontColor}"
                                          Lines="4"/>
                             </StackLayout>
                         </StackLayout>

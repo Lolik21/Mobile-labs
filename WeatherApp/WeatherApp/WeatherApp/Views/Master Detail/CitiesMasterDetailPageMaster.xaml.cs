@@ -31,14 +31,37 @@ namespace WeatherApp.Views
             appLanguage.MultilangualViewModels.Add(masterViewModel);
             appSettings.BackGroundChangableViewModels.Add(masterViewModel);
             appSettings.FontChangableViewModels.Add(masterViewModel);
-            InitPage();
+            InitCities();
             ListView = MenuItemsListView;
         }
 
-        private async void InitPage()
+        private async void InitCities()
         {
             await contentProvider.LoadCities();
-            (this.BindingContext as MasterViewModel).AddRange(contentProvider.Cities);
+            var models = contentProvider.Cities.Select((item) => new CityTableCellViewModel
+            {
+                Name = item.Name,
+                Description = item.Description,
+                Weather = item.CurrentWeather,
+                WeatherId = item.WeatherId,
+                ImageUrl = item.SmallPhoto
+            });
+            (this.BindingContext as MasterViewModel).AddRange(models.ToList());
+            InitImages();
+            await contentProvider.LoadWeatherForModels((this.BindingContext as MasterViewModel).CityMenuItems);            
+        }
+
+        private void InitImages()
+        {
+            contentProvider.GetImagesForCells((this.BindingContext as MasterViewModel).CityMenuItems);
+        }
+
+        private async void MenuItemsListView_Refreshing(object sender, EventArgs e)
+        {
+            var model = this.BindingContext as MasterViewModel;
+            model.IsRefreshing = true;
+            await contentProvider.LoadWeatherForModels(model.CityMenuItems);
+            model.IsRefreshing = false;
         }
     }
 }
