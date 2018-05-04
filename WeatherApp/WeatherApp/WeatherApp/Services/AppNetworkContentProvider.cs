@@ -22,19 +22,14 @@ namespace WeatherApp.Services
     {
         public List<City> Cities { get; set; }
 
-        public event EventHandler WeatherLoaded;
+        public event EventHandler WeatherUpdated;
 
         public void GetImagesForCells(ObservableCollection<CityTableCellViewModel> citiesModels)
         {
             var httpClient = new HttpClient();
             foreach (var cityModel in citiesModels)
             {
-                cityModel.CitySmallImageSource = new UriImageSource
-                {
-                    Uri = new Uri(UrlResolver.ResolveImageUrl(cityModel.ImageUrl)),
-                    CachingEnabled = true,
-                    CacheValidity = new TimeSpan(5, 0, 0, 0)
-                };
+                cityModel.CitySmallImageSource = UrlResolver.ResolveImageUrl(cityModel.ImageUrl);
                 cityModel.UpdateImage();
             }
         }
@@ -47,6 +42,11 @@ namespace WeatherApp.Services
                 var json = await httpClient.GetStringAsync(UrlResolver.ResolveCitiesJsonLink());
                 this.Cities = JsonConvert.DeserializeObject<List<City>>(json);
             }
+        }
+
+        public string GetBigImage(City city)
+        {
+            return UrlResolver.ResolveImageUrl(city.BigPhoto);
         }
 
         public async Task LoadWeatherForModels(ObservableCollection<CityTableCellViewModel> citiesModels)
@@ -79,6 +79,12 @@ namespace WeatherApp.Services
                     }                    
                 }
             }
+            WeatherUpdated(this, new EventArgs());
+        }
+
+        public string GetSmallImage(City city)
+        {
+            return UrlResolver.ResolveImageUrl(city.SmallPhoto);
         }
     }
 }

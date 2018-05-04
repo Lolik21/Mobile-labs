@@ -38,7 +38,7 @@ namespace WeatherApp.Views
         private async void InitCities()
         {
             await contentProvider.LoadCities();
-            var models = contentProvider.Cities.Select((item) => new CityTableCellViewModel
+            var models = contentProvider.Cities.Select((item) => new CityTableCellViewModel(item)
             {
                 Name = item.Name,
                 Description = item.Description,
@@ -47,13 +47,7 @@ namespace WeatherApp.Views
                 ImageUrl = item.SmallPhoto
             });
             (this.BindingContext as MasterViewModel).AddRange(models.ToList());
-            InitImages();
             await contentProvider.LoadWeatherForModels((this.BindingContext as MasterViewModel).CityMenuItems);            
-        }
-
-        private void InitImages()
-        {
-            contentProvider.GetImagesForCells((this.BindingContext as MasterViewModel).CityMenuItems);
         }
 
         private async void MenuItemsListView_Refreshing(object sender, EventArgs e)

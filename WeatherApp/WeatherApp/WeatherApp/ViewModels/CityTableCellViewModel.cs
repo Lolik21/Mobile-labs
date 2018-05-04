@@ -1,23 +1,28 @@
-﻿using System.ComponentModel;
+﻿using CommonServiceLocator;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using WeatherApp.Models;
+using WeatherApp.Services.Interfaces;
 using Xamarin.Forms;
 
 namespace WeatherApp.ViewModels
 {
     public class CityTableCellViewModel : INotifyPropertyChanged
     {
+        private IContentProvider contentProvider = ServiceLocator.Current.GetInstance<IContentProvider>();
+
+        public CityTableCellViewModel(City city)
+        {
+            CitySmallImageSource = contentProvider.GetSmallImage(city);
+        }
+
         public string Name { get; set; }
         public string Weather { get; set; }
         public string Description { get; set; }
         public string WeatherId { get; set; }
         public string ImageUrl { get; set; }
-        public ImageSource CitySmallImageSource { get; set; }
+        public string CitySmallImageSource { get; set; }
         public ImageSource WindDirectionImageSource { get; set; }
-
-        public CityTableCellViewModel()
-        {
-            CitySmallImageSource = "defaultImage.png";
-        }
 
         public void UpdateImage()
         {

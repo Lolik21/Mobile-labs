@@ -11,8 +11,11 @@ namespace WeatherApp.Services.Interfaces
 {
     public interface IContentProvider
     {
-        List<City> Cities { get; set; }      
+        List<City> Cities { get; set; }
+        event EventHandler WeatherUpdated;
         Task LoadCities();
+        string GetBigImage(City city);
+        string GetSmallImage(City city);
         void GetImagesForCells(ObservableCollection<CityTableCellViewModel> citiesModels);
         Task LoadWeatherForModels(ObservableCollection<CityTableCellViewModel> citiesModels);
     }

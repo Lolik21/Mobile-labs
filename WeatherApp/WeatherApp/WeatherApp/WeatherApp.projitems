@@ -18,7 +18,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\GifImageViewControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MultiLineLabel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StringUrlResolverStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UrlResolver.cs" />
@@ -31,8 +30,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interfaces\IContentProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interfaces\IFontChangable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interfaces\IMultilangual.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Children\DetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Children\MainMapViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Children\MasterDetailMainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Children\MasterDetailPageDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CityTableCellViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />

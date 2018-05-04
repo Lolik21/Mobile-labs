@@ -13,6 +13,10 @@ namespace WeatherApp.ViewModels
     class SettingsViewModel : MainViewModel, IFontChangable, IMultilangual, 
         INotifyPropertyChanged, IBackGroundChangable
     {
+        protected double defaultSize = (double)Application.Current.Resources["defultSettingsFontSize"];
+        protected double defaultSupportTitleSize = (double)Application.
+            Current.Resources["defultSettingsFontSupportSize"];
+
         public SettingsViewModel(AppLanguageController appLanguageProvider)
         {
             UpdateLanguage();
@@ -34,13 +38,6 @@ namespace WeatherApp.ViewModels
         public double SettingsLabelsFontSize { get; set; }
         public List<string> SupportedLanguages { get; set; }
         public string SelectedLanguage { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged(string prop)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
 
         public void UpdateFontColor(Color color)
         {

@@ -7,7 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using FFImageLoading.Forms.Droid;
-using WeatherApp.Droid.Renders;
+using TK.CustomMap.Droid;
 
 namespace WeatherApp.Droid
 {
@@ -22,8 +22,8 @@ namespace WeatherApp.Droid
             base.OnCreate(bundle);            
             global::Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
-            CachedImageRenderer.Init(enableFastRenderer: true);
-            GifImageViewRenderer.Init();
+            CachedImageRenderer.Init(enableFastRenderer: false);
+            TKGoogleMaps.Init(this, bundle);
             LoadApplication(new App());
             
         }

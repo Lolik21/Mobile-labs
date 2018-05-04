@@ -3,11 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.Views.CitiesMasterDetailPage"
              xmlns:pages="clr-namespace:WeatherApp.Views"
-             >
+             Title="{Binding Title}">
   <MasterDetailPage.Master>
     <pages:CitiesMasterDetailPageMaster x:Name="MasterPage" />
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
-    
+        <NavigationPage>
+            <x:Arguments>
+                <pages:LoadingContentPage/>
+            </x:Arguments>
+        </NavigationPage>
   </MasterDetailPage.Detail>
 </MasterDetailPage>

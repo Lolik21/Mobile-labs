@@ -18,10 +18,9 @@ namespace WeatherApp
 {
 	public partial class MainPage : TabbedPage
     {
-        AppSettingsController appSettings = ServiceLocator.Current.GetInstance<AppSettingsController>();
         public MainPage()
 		{
-            InitializeComponent();            
+            InitializeComponent();
         }
     }
 }

@@ -2,21 +2,30 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherApp.Views.CitiesMasterDetailPageDetail"
+             xmlns:tk="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-             Title="{Binding CityName}">
+             Title="{Binding CityName}"
+             BackgroundColor="{Binding BackgroundColor}">
     <ScrollView>
         <StackLayout>
-            <Label Text="{Binding CityName}" HorizontalTextAlignment="Center" TextColor="{Binding FontColor}"/>
-            <Image Source="{Binding BigImageSource}" HeightRequest="500"/>
+            <Label Text="{Binding CityName}" HorizontalTextAlignment="Center" 
+                   TextColor="{Binding FontColor}" FontSize="{Binding DefultDetailTitleFontSize}"/>
+            <ffimageloading:CachedImage Source="{Binding BigImageSource}" Aspect="Fill" LoadingPlaceholder="loader.gif" HeightRequest="400"/>
             <StackLayout Orientation="Horizontal">
-                <Label Text="{Binding CityWeather}" 
-                       TextColor="{Binding FontColor}" VerticalOptions="StartAndExpand"/>
-                <Image VerticalOptions="CenterAndExpand"/>
-                <Label Text="{Binding CityCountry}" 
-                       TextColor="{Binding FontColor}" VerticalOptions="EndAndExpand"/>
+                <Label Text="{Binding CityWeather}" FontSize="{Binding DefultDetailKeyInfoTitleFontSize}" 
+                       TextColor="{Binding FontColor}" HorizontalOptions="StartAndExpand" Margin="5,0,0,0"/>
+                <Image HorizontalOptions="CenterAndExpand" Source="{Binding WindDirectionImageSource}"/>
+                <Label Text="{Binding CityCountry}" FontSize="{Binding DefultDetailKeyInfoTitleFontSize}"
+                       TextColor="{Binding FontColor}" HorizontalOptions="EndAndExpand" Margin="0,0,5,0"/>
             </StackLayout>
-            <Label Text="{Binding CityDescription}" TextColor="{Binding FontColor}"/>
-            <maps:Map x:Name="mainMap" MapType="Hybrid" HeightRequest="500"/>
+            <Label Text="{Binding CityDescription}" FontSize="{Binding DefultDetailDecriptionTitleFontSize}"
+                   TextColor="{Binding FontColor}" HorizontalTextAlignment="Center" Margin="5,0,5,0"/>
+            <tk:TKCustomMap x:Name="cityMap" 
+                            MapType="Hybrid"
+                            IsShowingUser="True" 
+                            HeightRequest="500"
+                            IsClusteringEnabled="False"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

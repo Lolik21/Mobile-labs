@@ -12,23 +12,18 @@ namespace WeatherApp.ViewModels
     class MainMapViewModel : MainViewModel, IFontChangable, IMultilangual, 
         INotifyPropertyChanged, IBackGroundChangable
     {
+        protected double defaultMapTitleSize = (double)Application.
+            Current.Resources["defultSettingsFontSupportSize"];
         public MainMapViewModel(AppLanguageController appLenguageProvider)
         {
             Title = _.GetString("MapTitle");
             MapSupportTitle = _.GetString("MapSupportTitle");
-            SupportTitalFontSize = defaultSupportTitleSize;
+            SupportTitalFontSize = defaultMapTitleSize;
             FontColor = defaultColor;
             BackgroundColor = backgroundColor;
         }
         public string MapSupportTitle { get; set; }
         public double SupportTitalFontSize { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void OnPropertyChanged(string prop)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
 
         public void ChangeBackground(Color newColor)
         {
@@ -44,7 +39,7 @@ namespace WeatherApp.ViewModels
 
         public void UpdateFontSize(double delta)
         {
-            SupportTitalFontSize = defaultSupportTitleSize + delta;
+            SupportTitalFontSize = defaultMapTitleSize + delta;
             OnPropertyChanged("SupportTitalFontSize");
         }
 

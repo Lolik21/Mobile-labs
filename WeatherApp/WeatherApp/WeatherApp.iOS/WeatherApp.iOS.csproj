@@ -24,8 +24,9 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>x86_64</MtouchArch>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchSdkVersion>11.2</MtouchSdkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -91,7 +92,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renders\CustomMultiLineLabelRenderer.cs" />
-    <Compile Include="Renders\GifImageViewRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
@@ -135,6 +135,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
     </PackageReference>
+    <PackageReference Include="TK.CustomMap">
+      <Version>2.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Unity">
       <Version>5.8.6</Version>
     </PackageReference>
@@ -144,9 +147,9 @@
     <PackageReference Include="Xamarin.FFImageLoading.Transformations">
       <Version>2.3.6</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.1.527436" />
     <PackageReference Include="Xamarin.Forms.Maps">
-      <Version>2.5.1.444934</Version>
+      <Version>2.5.1.527436</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

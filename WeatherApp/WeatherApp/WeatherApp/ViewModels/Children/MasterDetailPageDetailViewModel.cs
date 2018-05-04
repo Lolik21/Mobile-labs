@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonServiceLocator;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -6,52 +7,80 @@ using System.Text;
 using WeatherApp.Models;
 using WeatherApp.Services.Interfaces;
 using Xamarin.Forms;
+using static WeatherApp.Models.WindDirection;
 
 namespace WeatherApp.ViewModels.Children
 {
-    class MasterDetailPageDetailViewModel : INotifyPropertyChanged, IFontChangable, IBackGroundChangable
+    class MasterDetailPageDetailViewModel : MainViewModel, INotifyPropertyChanged, IFontChangable, IBackGroundChangable
     {
+        private IContentProvider contentProvider = ServiceLocator.Current.GetInstance<IContentProvider>();
+        private City city;
+        protected double defultDetailTitleFontSize = (double)Application.
+            Current.Resources["defultDetailTitleFontSize"];
+        protected double defultDetailKeyInfoTitleFontSize = (double)Application.
+            Current.Resources["defultDetailKeyInfoTitleFontSize"];
+        protected double defultDetailDecriptionTitleFontSize = (double)Application.
+            Current.Resources["defultDetailDecriptionTitleFontSize"];
+
         public MasterDetailPageDetailViewModel(City city)
         {
+            this.city = city;
+            BigImageSource = contentProvider.GetBigImage(city);
+            OnPropertyChanged("BigImageSource");
             CityName = city.Name;
             CityWeather = city.CurrentWeather;
             CityCountry = city.Country;
-            CityDescription = city.Description;
-            CityWindDegree = city.WindDegree;
-            BigImageSource = "defaultImage.png";
+            CityDescription = city.Description;          
+            FontColor = defaultColor;
+            BackgroundColor = backgroundColor;
+            DefultDetailTitleFontSize = defultDetailTitleFontSize;
+            DefultDetailKeyInfoTitleFontSize = defultDetailKeyInfoTitleFontSize;
+            DefultDetailDecriptionTitleFontSize = defultDetailDecriptionTitleFontSize;
+            Wind wind = GetWindDirection(city.WindDegree);
+            WindDirectionImageSource = GetWindImageDirection(wind);
+            contentProvider.WeatherUpdated += WeatherUpdated;
         }
 
         public string CityName { get; set; }
         public string CityWeather { get; set; }
         public string CityCountry { get; set; }
         public string CityDescription { get; set; }
-        public int CityWindDegree { get; set; }
-        public ImageSource BigImageSource { get; set; }
+        public string BigImageSource { get; set; }
+        public ImageSource WindDirectionImageSource { get; set; }
+
+        public double DefultDetailTitleFontSize { get; set; }
+        public double DefultDetailKeyInfoTitleFontSize { get; set; }
+        public double DefultDetailDecriptionTitleFontSize { get; set; }
 
         public void ChangeBackground(Color newColor)
         {
-            throw new NotImplementedException();
+            this.BackgroundColor = newColor;
+            OnPropertyChanged("BackgroundColor");
         }
 
         public void UpdateFontColor(Color color)
         {
-            throw new NotImplementedException();
+            this.FontColor = color;
+            OnPropertyChanged("FontColor");
         }
 
         public void UpdateFontSize(double delta)
         {
-            throw new NotImplementedException();
+            DefultDetailTitleFontSize = defultDetailTitleFontSize + delta;
+            DefultDetailKeyInfoTitleFontSize = defultDetailKeyInfoTitleFontSize + delta;
+            DefultDetailDecriptionTitleFontSize = defultDetailDecriptionTitleFontSize + delta;
+            OnPropertyChanged("DefultDetailTitleFontSize");
+            OnPropertyChanged("DefultDetailKeyInfoTitleFontSize");
+            OnPropertyChanged("DefultDetailDecriptionTitleFontSize");
         }
 
-        #region INotifyPropertyChanged Implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        private void WeatherUpdated(object sender, EventArgs e)
         {
-            if (PropertyChanged == null)
-                return;
-
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            CityWeather = city.CurrentWeather;
+            Wind wind = GetWindDirection(city.WindDegree);
+            WindDirectionImageSource = GetWindImageDirection(wind);
+            OnPropertyChanged("CityWeather");
+            OnPropertyChanged("WindDirectionImageSource");
         }
-        #endregion
     }
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:tk="clr-namespace:TK.CustomMap;assembly=TK.CustomMap"
              x:Class="WeatherApp.Views.MainMapContentPage"           
              Title="{Binding Title}"
              BackgroundColor="{Binding BackgroundColor}">
@@ -9,6 +9,10 @@
         <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="{Binding MapSupportTitle}" 
                FontSize="{Binding SupportTitalFontSize}" 
                TextColor="{Binding FontColor}" />
-        <maps:Map x:Name="mainMap" MapType="Hybrid"/>
+        <tk:TKCustomMap x:Name="citiesMap" 
+                            MapType="Hybrid"
+                            IsShowingUser="True"
+                            VerticalOptions="FillAndExpand"
+                            IsClusteringEnabled="False"/>
     </StackLayout>
 </ContentPage>

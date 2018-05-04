@@ -8,6 +8,7 @@ using WeatherApp.Models;
 using WeatherApp.Services;
 using WeatherApp.Services.Interfaces;
 using WeatherApp.ViewModels;
+using WeatherApp.ViewModels.Children;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,13 +21,16 @@ namespace WeatherApp.Views
         private AppSettingsController appSettings = ServiceLocator.Current.GetInstance<AppSettingsController>();
         private AppLanguageController appLanguage = ServiceLocator.Current.GetInstance<AppLanguageController>();
 
+        private Dictionary<City, Page> pages = new Dictionary<City, Page>();
+
         public CitiesMasterDetailPage()
         {
             InitializeComponent();
+            var masterModel = new MasterDetailMainViewModel();
+            this.BindingContext = masterModel;
+            appLanguage.MultilangualViewModels.Add(masterModel);
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
-            //var city = contentProvider.Cities.First();           
-            //var page = (Page)Activator.CreateInstance(typeof(CitiesMasterDetailPageDetail), city);
-            Detail = new NavigationPage(new LoadingContentPage());
+            contentProvider.WeatherUpdated += WeatherLoaded;
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -34,13 +38,29 @@ namespace WeatherApp.Views
             if (e.SelectedItem is CityTableCellViewModel model)
             {
                 var city = contentProvider.Cities.First((item) => item.WeatherId == model.WeatherId);
-                var page = (Page)Activator.CreateInstance(typeof(CitiesMasterDetailPageDetail), city);
-
-                Detail = new NavigationPage(page);
+                if (!pages.ContainsKey(city))
+                {
+                    var page = (Page)Activator.CreateInstance(typeof(CitiesMasterDetailPageDetail), city);
+                    pages.Add(city, page);
+                }  
+                Detail = new NavigationPage(pages[city]);
                 IsPresented = false;
-
                 MasterPage.ListView.SelectedItem = null;
             }
+        }
+
+        private void WeatherLoaded(object sender, EventArgs e)
+        {
+            var city = contentProvider.Cities.First();
+            if (!pages.ContainsKey(city))
+            {
+                var page = (Page)Activator.CreateInstance(typeof(CitiesMasterDetailPageDetail), city);
+                pages.Add(city, page);
+            }
+            Detail = new NavigationPage(pages[city]);
+            IsPresented = false;
+            MasterPage.ListView.SelectedItem = null;
+            contentProvider.WeatherUpdated -= WeatherLoaded;
         }
     }
 }

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:WeatherApp.Views"
              x:Class="WeatherApp.MainPage"
-            >
+             Title="{Binding }"   >
     <local:CitiesMasterDetailPage/>
     <local:MainMapContentPage/>
     <local:SettingsContentPage/>
