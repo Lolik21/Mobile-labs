@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FFImageLoading.Forms.Touch;
 using Foundation;
+using TK.CustomMap.iOSUnified;
 using UIKit;
 
 namespace WeatherApp.iOS
@@ -23,9 +24,10 @@ namespace WeatherApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            var renderer = new TKCustomMapRenderer();
             Xamarin.FormsMaps.Init();
-            LoadApplication(new App());
             CachedImageRenderer.Init();
+            LoadApplication(new App());          
             return base.FinishedLaunching(app, options);
         }
     }

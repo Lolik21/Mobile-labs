@@ -7,8 +7,9 @@ using System.Text;
 using WeatherApp.Models;
 using WeatherApp.Services.Interfaces;
 using Xamarin.Forms;
-using DewCore.Xamarin.Localization;
 using System.Windows.Input;
+using WeatherApp.Helpers;
+using System.Linq;
 
 namespace WeatherApp.ViewModels
 {
@@ -26,7 +27,7 @@ namespace WeatherApp.ViewModels
         public MasterViewModel()
         {
             CityMenuItems = new ObservableCollection<CityTableCellViewModel>();
-            Title = _.GetString("MasterDetailTitle");
+            Title = Localizer.GetString("MasterDetailTitle");
             MasterCityTitleLabelFontSize = masterCityTitleLabelFontSize;
             MasterCityWeatherLabelFontSize = masterCityWeatherLabelFontSize;
             MasterCityDescriptionLabelFontSize = masterCityDescriptionLabelFontSize;
@@ -69,6 +70,13 @@ namespace WeatherApp.ViewModels
             OnPropertyChanged("MasterCityTitleLabelFontSize");
             OnPropertyChanged("MasterCityWeatherLabelFontSize");
             OnPropertyChanged("MasterCityDescriptionLabelFontSize");
+
+            #region For IOS Cells overlapping issue - fix (govnocod)
+            var model = CityMenuItems.First();
+            CityMenuItems.Remove(model);
+            CityMenuItems.Insert(0, model);
+            OnPropertyChanged("CityMenuItems");
+            #endregion
         }
 
         public void ChangeBackground(Color newColor)
@@ -79,7 +87,7 @@ namespace WeatherApp.ViewModels
 
         public void UpdateLanguage()
         {
-            Title = _.GetString("MasterDetailTitle");
+            Title = Localizer.GetString("MasterDetailTitle");
             OnPropertyChanged("Title");
         }
 

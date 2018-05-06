@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +34,7 @@ namespace WeatherApp.Views
             appSettings.BackGroundChangableViewModels.Add(masterViewModel);
             appSettings.FontChangableViewModels.Add(masterViewModel);
             InitCities();
-            ListView = MenuItemsListView;
+            ListView = MenuItemsListView;         
         }
 
         private async void InitCities()
@@ -47,7 +49,12 @@ namespace WeatherApp.Views
                 ImageUrl = item.SmallPhoto
             });
             (this.BindingContext as MasterViewModel).AddRange(models.ToList());
-            await contentProvider.LoadWeatherForModels((this.BindingContext as MasterViewModel).CityMenuItems);            
+            await contentProvider.LoadWeatherForModels((this.BindingContext as MasterViewModel).CityMenuItems);
+
+            #region For IOS - Overlapping after font resize - fix (govnocod)
+            ListView.ItemsSource = null;
+            ListView.ItemsSource = (this.BindingContext as MasterViewModel).CityMenuItems;
+            #endregion
         }
 
         private async void MenuItemsListView_Refreshing(object sender, EventArgs e)
@@ -55,7 +62,7 @@ namespace WeatherApp.Views
             var model = this.BindingContext as MasterViewModel;
             model.IsRefreshing = true;
             await contentProvider.LoadWeatherForModels(model.CityMenuItems);
-            model.IsRefreshing = false;
+            model.IsRefreshing = false;           
         }
     }
 }

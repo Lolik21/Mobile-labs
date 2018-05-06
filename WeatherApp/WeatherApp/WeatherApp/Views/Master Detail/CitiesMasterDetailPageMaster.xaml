@@ -10,11 +10,12 @@
     <StackLayout>
         <ListView x:Name="MenuItemsListView"
               SeparatorVisibility="None"
-              HasUnevenRows="true"
+              HasUnevenRows="True"
               IsPullToRefreshEnabled="True"
               IsRefreshing="{Binding IsRefreshing}"
               Refreshing="MenuItemsListView_Refreshing"
-              ItemsSource="{Binding CityMenuItems}">
+              ItemsSource="{Binding CityMenuItems}"
+              BackgroundColor="{Binding BackgroundColor}">
             <ListView.Header>
                 <RelativeLayout>
                     <Image Source="weather.jpg"/>
@@ -47,7 +48,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.View>
-                        <StackLayout Orientation="Horizontal" Margin="3">
+                            <StackLayout Orientation="Horizontal" Margin="3" Padding="3">
                                 <ffimageloading:CachedImage Source="{Binding CitySmallImageSource}" 
                                                             LoadingPlaceholder="defaultImage.png"
                                                             DownsampleToViewSize="true"
@@ -58,7 +59,7 @@
                                     <Label Text="{Binding Name}" FontSize="{Binding Source={x:Reference MasterPage}, Path=BindingContext.MasterCityTitleLabelFontSize}" 
                                            LineBreakMode="TailTruncation" 
                                            TextColor="{Binding Source={x:Reference MasterPage}, Path=BindingContext.FontColor}"/>
-                                    <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Horizontal" >
                                         <Label Text="{Binding Weather}" FontSize="{Binding Source={x:Reference MasterPage}, Path=BindingContext.MasterCityWeatherLabelFontSize}" 
                                            LineBreakMode="TailTruncation" TextColor="{Binding Source={x:Reference MasterPage}, Path=BindingContext.FontColor}"
                                            VerticalTextAlignment="Center" VerticalOptions="Center"/>

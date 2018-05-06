@@ -9,9 +9,10 @@
              BackgroundColor="{Binding BackgroundColor}">
     <ScrollView>
         <StackLayout>
-            <Label Text="{Binding CityName}" HorizontalTextAlignment="Center" 
+            <Label Text="{Binding CityName}" HorizontalTextAlignment="Center" HorizontalOptions="Center"
                    TextColor="{Binding FontColor}" FontSize="{Binding DefultDetailTitleFontSize}"/>
-            <ffimageloading:CachedImage Source="{Binding BigImageSource}" Aspect="Fill" LoadingPlaceholder="loader.gif" HeightRequest="400"/>
+            <ffimageloading:CachedImage Source="{Binding BigImageSource}" Aspect="AspectFit" 
+                                        LoadingPlaceholder="loader.gif" HeightRequest="500"/>
             <StackLayout Orientation="Horizontal">
                 <Label Text="{Binding CityWeather}" FontSize="{Binding DefultDetailKeyInfoTitleFontSize}" 
                        TextColor="{Binding FontColor}" HorizontalOptions="StartAndExpand" Margin="5,0,0,0"/>

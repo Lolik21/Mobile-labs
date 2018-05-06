@@ -14,7 +14,7 @@ namespace WeatherApp.Views
 	{
 		public LoadingContentPage ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
 	}
 }

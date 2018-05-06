@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DewCore.Xamarin.Localization;
+using WeatherApp.Helpers;
 using WeatherApp.Services.Interfaces;
 
 namespace WeatherApp.ViewModels.Children
@@ -10,12 +10,12 @@ namespace WeatherApp.ViewModels.Children
     {
         public MasterDetailMainViewModel()
         {
-            Title = _.GetString("MasterDetailTitle");
+            Title = Localizer.GetString("MasterDetailTitle");
         }
 
         public void UpdateLanguage()
         {
-            Title = _.GetString("MasterDetailTitle");
+            Title = Localizer.GetString("MasterDetailTitle");
             OnPropertyChanged("Title");
         }
     }

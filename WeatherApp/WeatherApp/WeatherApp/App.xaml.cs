@@ -9,7 +9,6 @@ using Unity.ServiceLocation;
 using WeatherApp.Services;
 using WeatherApp.Services.Interfaces;
 using Xamarin.Forms;
-using DewCore.Xamarin.Localization;
 using System.Net.Http;
 using WeatherApp.Helpers;
 using System.Threading.Tasks;
@@ -38,7 +37,7 @@ namespace WeatherApp
             if (!appLanguage.SupportedLanguages.ContainsKey
                 (CultureInfo.CurrentCulture.Name.ToLower()))
             {
-                _.CultureStringOverride = 
+                Localizer.CultureStringOverride = 
                     appLanguage.SupportedLanguages.Keys.First();
                 appLanguage.CurrentLanguage = appLanguage.
                     SupportedLanguages[appLanguage.SupportedLanguages.Keys.First()];
@@ -47,7 +46,7 @@ namespace WeatherApp
                 appLanguage.CurrentLanguage = appLanguage.
                     SupportedLanguages[CultureInfo.CurrentCulture.Name.ToLower()];
             }
-            _.LoadDictionary();
+            Task.WaitAll(Localizer.LoadDictionary());
 
             MainPage = new MainPage();
 

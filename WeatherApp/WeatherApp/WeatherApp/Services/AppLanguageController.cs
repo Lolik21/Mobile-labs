@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using WeatherApp.Services.Interfaces;
-using DewCore.Xamarin.Localization;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Globalization;
+using WeatherApp.Helpers;
 
 namespace WeatherApp.Services
 {
@@ -34,7 +34,7 @@ namespace WeatherApp.Services
 
             if (newCulture.Name.ToLower() != prevCulture.Name.ToLower())
             {
-                await _.ChangeCulture(newCulture);
+                await Localizer.ChangeCulture(newCulture);
 
                 foreach (var viewModel in MultilangualViewModels)
                 {

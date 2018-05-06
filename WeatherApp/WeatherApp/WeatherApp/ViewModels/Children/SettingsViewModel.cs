@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Text;
+using WeatherApp.Helpers;
 using WeatherApp.Services;
 using WeatherApp.Services.Interfaces;
 using Xamarin.Forms;
-using DewCore.Xamarin.Localization;
 
 namespace WeatherApp.ViewModels
 {
@@ -61,12 +61,12 @@ namespace WeatherApp.ViewModels
 
         public void UpdateLanguage()
         {
-            Title = _.GetString("SettingsTitle");
-            SettingsSupportTitle = _.GetString("SettingsSupportTitle"); ;
-            SettingsLanguageLabelText = _.GetString("SettingsLanguageLabelText");
-            SettingsFontSizeLabelText = _.GetString("SettingsFontSizeLabelText");
-            SettingsFontColorLabelText = _.GetString("SettingsFontColorLabelText");
-            SettingsBackgroundColorLabelText = _.GetString("SettingsBackgroundColorLabelText");
+            Title = Localizer.GetString("SettingsTitle");
+            SettingsSupportTitle = Localizer.GetString("SettingsSupportTitle"); ;
+            SettingsLanguageLabelText = Localizer.GetString("SettingsLanguageLabelText");
+            SettingsFontSizeLabelText = Localizer.GetString("SettingsFontSizeLabelText");
+            SettingsFontColorLabelText = Localizer.GetString("SettingsFontColorLabelText");
+            SettingsBackgroundColorLabelText = Localizer.GetString("SettingsBackgroundColorLabelText");
             OnPropertyChanged("Title");
             OnPropertyChanged("SettingsSupportTitle");
             OnPropertyChanged("SettingsLanguageLabelText");

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using WeatherApp.Helpers;
 using WeatherApp.Services;
 using WeatherApp.Services.Interfaces;
 using Xamarin.Forms;
-using DewCore.Xamarin.Localization;
 
 namespace WeatherApp.ViewModels
 {
@@ -16,8 +16,8 @@ namespace WeatherApp.ViewModels
             Current.Resources["defultSettingsFontSupportSize"];
         public MainMapViewModel(AppLanguageController appLenguageProvider)
         {
-            Title = _.GetString("MapTitle");
-            MapSupportTitle = _.GetString("MapSupportTitle");
+            Title = Localizer.GetString("MapTitle");
+            MapSupportTitle = Localizer.GetString("MapSupportTitle");
             SupportTitalFontSize = defaultMapTitleSize;
             FontColor = defaultColor;
             BackgroundColor = backgroundColor;
@@ -45,8 +45,8 @@ namespace WeatherApp.ViewModels
 
         public void UpdateLanguage()
         {
-            Title = _.GetString("MapTitle");
-            MapSupportTitle = _.GetString("MapSupportTitle");
+            Title = Localizer.GetString("MapTitle");
+            MapSupportTitle = Localizer.GetString("MapSupportTitle");
             OnPropertyChanged("Title");
             OnPropertyChanged("MapSupportTitle");
         }

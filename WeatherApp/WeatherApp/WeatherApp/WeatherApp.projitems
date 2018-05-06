@@ -19,6 +19,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MultiLineLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Localizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StringUrlResolverStorage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UrlResolver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\City.cs" />

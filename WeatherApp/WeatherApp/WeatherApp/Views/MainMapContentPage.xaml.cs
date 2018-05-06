@@ -24,7 +24,7 @@ namespace WeatherApp.Views
         public MainMapContentPage ()
 		{
 			InitializeComponent ();
-            MainMapViewModel mainMapViewModel = new MainMapViewModel(appLanguage);
+            var mainMapViewModel = new MainMapViewModel(appLanguage);
             this.BindingContext = mainMapViewModel;
             appSettings.BackGroundChangableViewModels.Add(mainMapViewModel);
             appSettings.FontChangableViewModels.Add(mainMapViewModel);
@@ -34,12 +34,12 @@ namespace WeatherApp.Views
 
         private void WeatherLoaded(object sender, EventArgs e)
         {
-            List<TKCustomMapPin> pins = new List<TKCustomMapPin>();
+            var pins = new List<TKCustomMapPin>();
             foreach (var city in contentProvider.Cities)
             {
                 var position = new Position(Convert.ToDouble(city.Latitude), Convert.ToDouble(city.Longitude));
-                Wind wind = GetWindDirection(city.WindDegree);
-                ImageSource sorce = GetWindImageDirection(wind);
+                var wind = GetWindDirection(city.WindDegree);
+                var sorce = GetWindImageDirection(wind);
                 var pin = new TKCustomMapPin
                 {
                     Image = sorce,
@@ -53,12 +53,41 @@ namespace WeatherApp.Views
                 pins.Add(pin);                
             }
             citiesMap.Pins = pins;
+            citiesMap.PinSelected += CitiesMap_PinSelected;
+            citiesMap.MapClicked += CitiesMap_MapClicked;
+            CenterMap();
+        }
 
-            #region GOVNOCOD
-            City centerCity = contentProvider.Cities.Where((item) => item.Name == "Minsk").First();
-            var centerTown = new Position(Convert.ToDouble(centerCity.Latitude), Convert.ToDouble(centerCity.Longitude));
-            citiesMap.MapRegion = MapSpan.FromCenterAndRadius(centerTown, Distance.FromKilometers(300));
-            #endregion
+        private void CitiesMap_PinSelected(object sender, TKGenericEventArgs<TKCustomMapPin> e)
+        {
+            NavigateToPin(e.Value);
+        }
+
+        private void CitiesMap_MapClicked(object sender, TKGenericEventArgs<Position> e)
+        {
+            var pins = citiesMap.Pins;
+            var pinDist = pins.Min((p) => p.Position.DistanceTo(e.Value));
+            var pin = pins.First((p) => p.Position.DistanceTo(e.Value) == pinDist);
+            NavigateToPin(pin);
+            citiesMap.SelectedPin = pin;
+        }
+
+        private void NavigateToPin(TKCustomMapPin pin)
+        {
+            var radius = citiesMap.MapRegion.Radius;
+            citiesMap.MoveToMapRegion(MapSpan.FromCenterAndRadius(pin.Position, radius), true);
+        }
+
+        private void CenterMap()
+        {
+            var centerCity = contentProvider.Cities.Where((item) => item.Name == "Minsk").First() ?? 
+                contentProvider.Cities.First();
+            
+            if (centerCity != null)
+            {
+                var centerTown = new Position(Convert.ToDouble(centerCity.Latitude), Convert.ToDouble(centerCity.Longitude));
+                citiesMap.MapRegion = MapSpan.FromCenterAndRadius(centerTown, Distance.FromKilometers(300));
+            }
         }
     }
 }

@@ -39,8 +39,15 @@ namespace WeatherApp.Services
             if (Cities == null)
             {
                 var httpClient = new HttpClient();
-                var json = await httpClient.GetStringAsync(UrlResolver.ResolveCitiesJsonLink());
-                this.Cities = JsonConvert.DeserializeObject<List<City>>(json);
+                try
+                {
+                    var json = await httpClient.GetStringAsync(UrlResolver.ResolveCitiesJsonLink());
+                    this.Cities = JsonConvert.DeserializeObject<List<City>>(json);
+                }
+                catch(Exception e)
+                {
+                    Debug.Fail(e.Message);
+                }                
             }
         }
 
